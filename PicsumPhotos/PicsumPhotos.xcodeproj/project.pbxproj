@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		93436ECF263F87ED0061C8F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436ECE263F87ED0061C8F5 /* AppDelegate.swift */; };
-		93436ED1263F87ED0061C8F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436ED0263F87ED0061C8F5 /* SceneDelegate.swift */; };
-		93436ED3263F87ED0061C8F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436ED2263F87ED0061C8F5 /* ViewController.swift */; };
 		93436ED6263F87ED0061C8F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93436ED4263F87ED0061C8F5 /* Main.storyboard */; };
 		93436ED8263F87EF0061C8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93436ED7263F87EF0061C8F5 /* Assets.xcassets */; };
 		93436EDB263F87EF0061C8F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93436ED9263F87EF0061C8F5 /* LaunchScreen.storyboard */; };
 		93436EE6263F87EF0061C8F5 /* PicsumPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436EE5263F87EF0061C8F5 /* PicsumPhotosTests.swift */; };
 		93436EF1263F87EF0061C8F5 /* PicsumPhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436EF0263F87EF0061C8F5 /* PicsumPhotosUITests.swift */; };
+		93436F022641CA7D0061C8F5 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436F012641CA7D0061C8F5 /* PhotosViewController.swift */; };
+		93436F0A2641F7210061C8F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436F092641F7210061C8F5 /* Constants.swift */; };
+		93436F0F2641F76F0061C8F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436F0E2641F76F0061C8F5 /* NetworkManager.swift */; };
+		93436F142641F78C0061C8F5 /* MAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93436F132641F78C0061C8F5 /* MAError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +39,6 @@
 /* Begin PBXFileReference section */
 		93436ECB263F87ED0061C8F5 /* PicsumPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicsumPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93436ECE263F87ED0061C8F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		93436ED0263F87ED0061C8F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		93436ED2263F87ED0061C8F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		93436ED5263F87ED0061C8F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93436ED7263F87EF0061C8F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93436EDA263F87EF0061C8F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +49,10 @@
 		93436EEC263F87EF0061C8F5 /* PicsumPhotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicsumPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93436EF0263F87EF0061C8F5 /* PicsumPhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsumPhotosUITests.swift; sourceTree = "<group>"; };
 		93436EF2263F87EF0061C8F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93436F012641CA7D0061C8F5 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		93436F092641F7210061C8F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		93436F0E2641F76F0061C8F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		93436F132641F78C0061C8F5 /* MAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				93436ECE263F87ED0061C8F5 /* AppDelegate.swift */,
-				93436ED0263F87ED0061C8F5 /* SceneDelegate.swift */,
-				93436ED2263F87ED0061C8F5 /* ViewController.swift */,
+				93436F182641FDFB0061C8F5 /* Utilities */,
+				93436F012641CA7D0061C8F5 /* PhotosViewController.swift */,
 				93436ED4263F87ED0061C8F5 /* Main.storyboard */,
 				93436ED7263F87EF0061C8F5 /* Assets.xcassets */,
 				93436ED9263F87EF0061C8F5 /* LaunchScreen.storyboard */,
@@ -126,6 +130,16 @@
 				93436EF2263F87EF0061C8F5 /* Info.plist */,
 			);
 			path = PicsumPhotosUITests;
+			sourceTree = "<group>";
+		};
+		93436F182641FDFB0061C8F5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				93436F0E2641F76F0061C8F5 /* NetworkManager.swift */,
+				93436F132641F78C0061C8F5 /* MAError.swift */,
+				93436F092641F7210061C8F5 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93436ED3263F87ED0061C8F5 /* ViewController.swift in Sources */,
+				93436F022641CA7D0061C8F5 /* PhotosViewController.swift in Sources */,
+				93436F142641F78C0061C8F5 /* MAError.swift in Sources */,
+				93436F0F2641F76F0061C8F5 /* NetworkManager.swift in Sources */,
 				93436ECF263F87ED0061C8F5 /* AppDelegate.swift in Sources */,
-				93436ED1263F87ED0061C8F5 /* SceneDelegate.swift in Sources */,
+				93436F0A2641F7210061C8F5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
