@@ -14,11 +14,13 @@ protocol PhotosViewToPresenterProtocol: AnyObject {
     var router: PhotosPresenterToRouterProtocol? { get set }
     var currentPage: Int { get set }
     func getMorePicsumPhotos()
+    func removeVowels(forAuthorNameIn photoObject: PhotoObject, indexPath: IndexPath)
 }
 
 protocol PhotosPresenterToViewProtocol: AnyObject {
     func addPicturesToView(photos: [PhotoObject])
     func failedToGetPictures()
+    func updateAuthorNameWithOutVowels(photoObject: PhotoObject, indexPath: IndexPath)
 }
 
 protocol PhotosPresenterToInteractorProtocol: AnyObject {

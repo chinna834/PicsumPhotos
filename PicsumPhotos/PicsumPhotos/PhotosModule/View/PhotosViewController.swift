@@ -54,15 +54,17 @@ extension PhotosViewController: PhotosPresenterToViewProtocol {
         photosCollectionView.insertItems(at: indexPaths)
     }
     
+    func updateAuthorNameWithOutVowels(photoObject: PhotoObject, indexPath: IndexPath) {
+        picsumPhotos[indexPath.item] = photoObject
+        photosCollectionView.reloadItems(at: [indexPath])
+    }
+    
     func failedToGetPictures() {
         print("Not able to load pictures")
     }
 }
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return picsumPhotos.count
@@ -80,6 +82,7 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let selectedPhotoObject = picsumPhotos[safe: indexPath.row] else { return }
+        presenter?.removeVowels(forAuthorNameIn: selectedPhotoObject, indexPath: indexPath)
     }
 }

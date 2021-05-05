@@ -40,9 +40,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         else if sender.state == .ended { //End the Label Animation
             authorNameLabel.layer.removeAnimation(forKey: "moveBackForth")
         }
-        else {
-            print("Continue the animation")
-        }
     }
     
     func configureCell(with photoObject: PhotoObject) {

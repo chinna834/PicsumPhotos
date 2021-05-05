@@ -28,4 +28,8 @@ struct PhotoObject: Decodable {
         url = try values.decodeIfPresent(String.self, forKey: .url)
         download_url = try values.decodeIfPresent(String.self, forKey: .download_url)
     }
+    
+    mutating func updateAuthorName(name: String) {
+        author = name
+    }
 }

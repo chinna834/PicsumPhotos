@@ -18,6 +18,18 @@ class PhotosViewPresenter: PhotosViewToPresenterProtocol {
         currentPage += 1
         interactor?.getPicsumPhotos(page: currentPage)
     }
+    
+    func removeVowels(forAuthorNameIn photoObject: PhotoObject, indexPath: IndexPath) {
+        guard let authorName = photoObject.author else { return }
+        let updatedAuthorName = String(authorName.filter({!"aAeEiIoOuU".contains(String($0))}))
+        
+        print("\(authorName) is \(updatedAuthorName)")
+        
+        var updatedPhotoObject = photoObject
+        updatedPhotoObject.updateAuthorName(name: updatedAuthorName)
+        
+        view?.updateAuthorNameWithOutVowels(photoObject: updatedPhotoObject, indexPath: indexPath)
+    }
 }
 
 extension PhotosViewPresenter: PhotosInteractorToPresenterProtocol {
