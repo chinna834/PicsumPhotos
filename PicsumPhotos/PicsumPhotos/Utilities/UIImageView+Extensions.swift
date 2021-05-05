@@ -13,6 +13,11 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 // MARK: - UIImageView extension
 extension UIImageView {
     
+    func makeRoundCorners(byRadius radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+    }
+    
     func loadImage(from urlString: String) {
         guard let url = URL(string: urlString) else { return }
         image = nil

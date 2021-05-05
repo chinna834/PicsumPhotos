@@ -17,12 +17,32 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
         
+        //Configure Image View
+        imageView.makeRoundCorners(byRadius: 10)
+        
+        //Configure Author Name Diagnolly
         authorNameLabel.transform = CGAffineTransform(rotationAngle: -.pi / 4)
+        
+        //Add Long Tap Gesture
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        photoBackgroundView.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began { //Start the Label Animation
+            let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            animation.repeatCount = .greatestFiniteMagnitude
+            animation.values = [-20, 20]
+            authorNameLabel.layer.add(animation, forKey: "moveBackForth")
+        }
+        else if sender.state == .ended { //End the Label Animation
+            authorNameLabel.layer.removeAnimation(forKey: "moveBackForth")
+        }
+        else {
+            print("Continue the animation")
+        }
     }
     
     func configureCell(with photoObject: PhotoObject) {
