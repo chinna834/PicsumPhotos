@@ -7,11 +7,20 @@
 
 import Foundation
 
+enum HTTPMethod: String {
+    case post = "POST",
+         get = "GET",
+         put = "UPDATE",
+         delete = "DELETE"
+}
+
 struct Constants {
     
-    //Identifier
-    static let photosVCIdentifier = "PhotosViewController"
+    //Storyboard
+    static let mainStoryboardName = "Main"
     
+    //View Controller Identifier
+    static let photosVCIdentifier = "PhotosViewController"
     
     //Common
     static let commonError = "Something went wrong. Please try again."

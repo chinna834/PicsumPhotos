@@ -10,12 +10,12 @@ import Security
 import SystemConfiguration
 
 protocol RequestObject {
-    var host: String{get}
-    var path: String{get}
-    var url: URL{get}
-    var method: String{get}
+    var host: String? {get}
+    var path: String? {get}
+    var url: URL {get}
+    var method: String {get}
     var header: [[String: Any]]? {get}
-    var body: String? {get}
+    var body: [[String: Any]]? {get}
     
     associatedtype response: DecodableResponse
 }
