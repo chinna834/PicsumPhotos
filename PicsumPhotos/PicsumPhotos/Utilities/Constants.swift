@@ -16,6 +16,8 @@ enum HTTPMethod: String {
 
 struct Constants {
     
+    static let picsumPhotosLimit = 100
+    
     //Storyboard
     static let mainStoryboardName = "Main"
     

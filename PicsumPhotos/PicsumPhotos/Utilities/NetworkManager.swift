@@ -89,15 +89,12 @@ class NetworkManager: NSObject {
         task.resume()
     }
     
-    //MARK: Download Image
+    //MARK: Download Image    
     static func downloadImage(url: URL, completion: @escaping (Result<Data>) -> Void) {
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
             
             guard let data = data, error == nil else {
+                completion(.failure(MAError(description: Constants.commonError, responseCode: 0, error: error)))
                 return
             }
             

@@ -19,11 +19,9 @@ struct GetPicsumPhotosRequest: RequestObject {
     var header: [[String : Any]]?
 
     init(page: Int) {
-        let urlPath = String(format: ServerKeys.getPicsumPhotosPath, "\(page)")
+        let urlPath = String(format: ServerKeys.getPicsumPhotosPath, "\(page)", "\(Constants.picsumPhotosLimit)")
         url = URL(string: urlPath)!
         method = HTTPMethod.get.rawValue
-        
-        print(urlPath)
     }
     
 }

@@ -17,17 +17,18 @@ extension UIImageView {
         guard let url = URL(string: urlString) else { return }
         image = nil
         
-        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
-            image = imageFromCache as? UIImage
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject), let picsumImage = imageFromCache as? UIImage {
+            image = picsumImage
             return
         }
+        
         NetworkManager.downloadImage(url: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let imageToCache = UIImage(data: data) else { return }
-                imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
-                self.image = UIImage(data: data)
+                guard let imageToCache = UIImage(data: data), let scaledImage = imageToCache.resizeImage(newHeight: 110) else { return }
+                imageCache.setObject(scaledImage, forKey: urlString as AnyObject)
+                self.image = scaledImage
             case .failure(_):
                 self.image = UIImage(named: "EmptyPlaceholder")
             }

@@ -9,8 +9,28 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
+    @IBOutlet weak var imageHeaderLabel: UILabel!
+    @IBOutlet weak var photosCollectionView: UICollectionView!
+    @IBOutlet weak var getImagesButton: UIButton!
+    
+    internal let minItemSpacing: CGFloat = 10.0
+    internal let headerHeight: CGFloat   = 0
+    
+    var picsumPhotos: [PhotoObject] = []
+    
     var presenter: PhotosViewToPresenterProtocol?
     
+    @IBAction func getMoreImagesButtonClicked(_ sender: Any) {
+        getMorePicsumPhotos()
+    }
+    
+    func configureCollectionView() {
+        photosCollectionView.collectionViewLayout = PhotoCollectionViewFlowLayout()
+        photosCollectionView.dataSource = self
+        photosCollectionView.delegate = self
+        photosCollectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: kPhotoCollectionViewCellIdentifier)
+    }
+
     func getMorePicsumPhotos() {
         presenter?.getMorePicsumPhotos()
     }
@@ -19,6 +39,7 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureCollectionView()
         getMorePicsumPhotos()
     }
 }
@@ -26,10 +47,39 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: PhotosPresenterToViewProtocol {
   
     func addPicturesToView(photos: [PhotoObject]) {
-        print(photos.count)
+        picsumPhotos.append(contentsOf: photos)
+        let indexPaths = Array((photos.count - Constants.picsumPhotosLimit - 1)...(photos.count - 1)).map {
+            IndexPath(item: $0, section: 0)
+        }
+        photosCollectionView.insertItems(at: indexPaths)
     }
     
     func failedToGetPictures() {
         print("Not able to load pictures")
+    }
+}
+
+extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return picsumPhotos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: kPhotoCollectionViewCellIdentifier, for: indexPath) as? PhotoCollectionViewCell,
+              let photoObject = picsumPhotos[safe: indexPath.item] else {
+            return PhotoCollectionViewCell()
+        }
+        
+        cell.configureCell(with: photoObject)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }

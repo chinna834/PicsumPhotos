@@ -16,10 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let photosViewController = PhotosViewRouter.createPhotosViewModule()
-        let navigationController = UINavigationController(rootViewController: photosViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
+        window?.rootViewController = photosViewController
         window?.makeKeyAndVisible()
 
         return true
