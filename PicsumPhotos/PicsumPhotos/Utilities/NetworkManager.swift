@@ -12,7 +12,7 @@ import SystemConfiguration
 protocol RequestObject {
     var host: String? {get}
     var path: String? {get}
-    var url: URL {get}
+    var url: URL? { get }
     var method: String {get}
     var header: [[String: Any]]? {get}
     var body: [[String: Any]]? {get}
@@ -36,7 +36,9 @@ class NetworkManager: NSObject {
     //MARK:- Create URL Request
     func createURLRequest<T: RequestObject>(r: T) -> URLRequest? {
         
-        var urlRequest = URLRequest(url: r.url)
+        guard let url = r.url else { return nil }
+        
+        var urlRequest = URLRequest(url: url)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if let headerKeys = r.header {

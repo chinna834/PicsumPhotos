@@ -13,14 +13,14 @@ struct GetPicsumPhotosRequest: RequestObject {
     
     var host: String? // No host present in this case
     var path: String?
-    var url: URL
+    var url: URL?
     var body: [[String: Any]]?
     var method: String
     var header: [[String : Any]]?
 
     init(page: Int) {
         let urlPath = String(format: ServerKeys.getPicsumPhotosPath, "\(page)", "\(Constants.picsumPhotosLimit)")
-        url = URL(string: urlPath)!
+        url = URL(string: urlPath)
         method = HTTPMethod.get.rawValue
     }
     

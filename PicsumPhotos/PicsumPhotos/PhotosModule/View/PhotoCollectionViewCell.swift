@@ -18,10 +18,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+    
         imageView.layer.cornerRadius = 10
-        photoBackgroundView.clipsToBounds = true
         imageView.clipsToBounds = true
+        
+        authorNameLabel.transform = CGAffineTransform(rotationAngle: -.pi / 4)
     }
     
     func configureCell(with photoObject: PhotoObject) {

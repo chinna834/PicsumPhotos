@@ -26,7 +26,7 @@ extension UIImageView {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let imageToCache = UIImage(data: data), let scaledImage = imageToCache.resizeImage(newHeight: 110) else { return }
+                guard let imageToCache = UIImage(data: data), let scaledImage = imageToCache.scaleUIImageTo(size: CGSize(width: 165, height: 110)) else { return }
                 imageCache.setObject(scaledImage, forKey: urlString as AnyObject)
                 self.image = scaledImage
             case .failure(_):
