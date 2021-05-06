@@ -189,9 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				93436F012641CA7D0061C8F5 /* PhotosViewController.swift */,
-				93436F6E2642EB730061C8F5 /* PhotoCollectionViewCell.swift */,
 				93436F752642F15A0061C8F5 /* PhotoCollectionViewFlowLayout.swift */,
-				93436F6F2642EB730061C8F5 /* PhotoCollectionViewCell.xib */,
+				93436F8326438CF60061C8F5 /* PhotoCollectionViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +234,15 @@
 				93436F4C26422D510061C8F5 /* PhotosViewConfigurator.swift */,
 			);
 			path = Configurator;
+			sourceTree = "<group>";
+		};
+		93436F8326438CF60061C8F5 /* PhotoCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				93436F6E2642EB730061C8F5 /* PhotoCollectionViewCell.swift */,
+				93436F6F2642EB730061C8F5 /* PhotoCollectionViewCell.xib */,
+			);
+			path = PhotoCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
