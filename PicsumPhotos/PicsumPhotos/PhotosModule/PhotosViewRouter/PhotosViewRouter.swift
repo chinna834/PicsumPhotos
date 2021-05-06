@@ -10,6 +10,9 @@ import UIKit
 
 class PhotosViewRouter: PhotosPresenterToRouterProtocol {
    
+    /**
+     Create the Photos View Controller and configure presenter, interactor and router to the View controller
+     */
     static func createPhotosViewModule() -> PhotosViewController {
         
         let storyboard = Utilities().getStoryboard(storyboardName: Constants.mainStoryboardName)

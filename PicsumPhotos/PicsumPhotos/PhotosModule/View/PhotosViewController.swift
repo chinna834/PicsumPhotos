@@ -20,21 +20,31 @@ class PhotosViewController: UIViewController {
     
     var presenter: PhotosViewToPresenterProtocol?
     
+    //MARK: - Get More Image Button Clicked
+    /**
+        Send the request to load the next set of images
+     */
     @IBAction func getMoreImagesButtonClicked(_ sender: Any) {
         getMorePicsumPhotos()
     }
     
+    //MARK: - Configure Collection View
+    /**
+        Configure the collection view with the layout and registers the collection view cell
+     */
     func configureCollectionView() {
         photosCollectionView.collectionViewLayout = PhotoCollectionViewFlowLayout()
-        photosCollectionView.dataSource = self
-        photosCollectionView.delegate = self
         photosCollectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: kPhotoCollectionViewCellIdentifier)
     }
 
+    /**
+     Requests Presenter to load more picsum photos
+     */
     func getMorePicsumPhotos() {
         presenter?.getMorePicsumPhotos()
     }
 
+    //MARK: - View did Load
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,13 +54,20 @@ class PhotosViewController: UIViewController {
     }
 }
 
+//MARK: - Updates from Presenter
 extension PhotosViewController: PhotosPresenterToViewProtocol {
   
+    /**
+     Presenter sends the new picsum records received and updates the collection view
+     */
     func addPicturesToView(photos: [PhotoObject]) {
         picsumPhotos.append(contentsOf: photos)
         photosCollectionView.reloadData()
     }
     
+    /**
+     Presenter updates the selected picsum photo author name by removing the vowels and collection updates the selected index path
+     */
     func updateAuthorNameWithOutVowels(photoObject: PhotoObject, indexPath: IndexPath) {
         picsumPhotos[indexPath.item] = photoObject
         photosCollectionView.reloadItems(at: [indexPath])
@@ -61,6 +78,7 @@ extension PhotosViewController: PhotosPresenterToViewProtocol {
     }
 }
 
+//MARK: - Collection View Data source and delegate methods
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

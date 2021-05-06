@@ -11,6 +11,9 @@ class PhotosViewInteractor: PhotosPresenterToInteractorProtocol {
     
     weak var presenter: PhotosInteractorToPresenterProtocol?
     
+    /**
+     Request the API to receive the Picsum photo records per page
+     */
     func getPicsumPhotos(page: Int) {
         let requestObject = GetPicsumPhotosRequest(page: page)
         

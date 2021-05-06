@@ -18,6 +18,9 @@ struct GetPicsumPhotosRequest: RequestObject {
     var method: String
     var header: [[String : Any]]?
 
+    /**
+     Construct the URL request for Picsum photos API
+     */
     init(page: Int) {
         let urlPath = String(format: ServerKeys.getPicsumPhotosPath, "\(page)", "\(Constants.picsumPhotosLimit)")
         url = URL(string: urlPath)
@@ -31,6 +34,9 @@ struct GetPicsumPhotosResponse: DecodableResponse {
     var photos: [PhotoObject] = []
     var error: MAError?
     
+    /**
+     Parse the Picsum photo objects using decodable protocol
+     */
     static func parse(data: Data, success: Bool) -> GetPicsumPhotosResponse? {
         
         var response = GetPicsumPhotosResponse()

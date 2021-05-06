@@ -20,6 +20,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
         //Configure Image View
         imageView.makeRoundCorners(byRadius: 10)
+        imageView.image = UIImage(named: "EmptyPlaceholder") //Adding default image
         
         //Configure Author Name Diagnolly
         authorNameLabel.transform = CGAffineTransform(rotationAngle: -.pi / 4)
@@ -29,12 +30,17 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         photoBackgroundView.addGestureRecognizer(longPressGesture)
     }
     
+    //MARK: - Animate the Author label when long pressed
+    /**
+     When the cell is long pressed author name is animated continousuly till the gesture state ends
+     */
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == .began { //Start the Label Animation
-            let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            let animation = CAKeyframeAnimation(keyPath: "opacity")
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             animation.repeatCount = .greatestFiniteMagnitude
-            animation.values = [-20, 20]
+            animation.autoreverses = true
+            animation.values = [1,0]
             authorNameLabel.layer.add(animation, forKey: "moveBackForth")
         }
         else if sender.state == .ended { //End the Label Animation
@@ -42,8 +48,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: - Configure the cell with Author name and Image
     func configureCell(with photoObject: PhotoObject) {
-        if let imageDownloadURLString = photoObject.download_url {
+        if let imageDownloadURLString = photoObject.getDownloadImageURL() {
             imageView.loadImage(from: imageDownloadURLString)
         }
         

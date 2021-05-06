@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//Used this to scale the high resolution image to smaller one. It is not required since the download url can be altered to receive the smaller image
 extension UIImage {
     
     //MARK: Renders the Image to specific size with Aspect fill

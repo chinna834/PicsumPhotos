@@ -9,6 +9,7 @@ import Foundation
 
 struct ServerKeys {
     
+    static let getBaseDownloadURL = "https://picsum.photos/id/%@/%@/%@"
     static let getPicsumPhotosPath = "https://picsum.photos/v2/list?page=%@&limit=%@"
     
 }

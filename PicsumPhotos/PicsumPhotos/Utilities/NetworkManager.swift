@@ -58,7 +58,7 @@ class NetworkManager: NSObject {
         return urlRequest
     }
     
-    //MARK: Send Request
+    //MARK: Send Request to API
     func send<T:RequestObject>(r:T,completion:@escaping Completion<T>) {
         
         guard let request = createURLRequest(r: r) else {
@@ -100,6 +100,7 @@ class NetworkManager: NSObject {
                 return
             }
             
+            print(url.absoluteString)
             completion(.success(data))
         }
 

@@ -14,11 +14,17 @@ class PhotosViewPresenter: PhotosViewToPresenterProtocol {
     var router: PhotosPresenterToRouterProtocol?
     var currentPage: Int = 0
     
+    /**
+     Increase the current page to track the next set of picsum photos download
+     */
     func getMorePicsumPhotos() {
         currentPage += 1
         interactor?.getPicsumPhotos(page: currentPage)
     }
     
+    /**
+     Remove vowels either through filter or sends the request to remove the vowels recursively and Updates the view
+     */
     func removeVowels(forAuthorNameIn photoObject: PhotoObject, indexPath: IndexPath) {
         guard let authorName = photoObject.author else { return }
 //        let updatedAuthorName = String(authorName.filter({!"aAeEiIoOuU".contains(String($0))}))
@@ -27,8 +33,6 @@ class PhotosViewPresenter: PhotosViewToPresenterProtocol {
         var currentIndex = 0
         removeVowel(index: &currentIndex, name: authorName, updatedName: &updatedAuthorName)
         
-        print("\(authorName) is \(updatedAuthorName)")
-        
         var updatedPhotoObject = photoObject
         updatedPhotoObject.updateAuthorName(name: updatedAuthorName)
         
@@ -36,6 +40,7 @@ class PhotosViewPresenter: PhotosViewToPresenterProtocol {
     }
 }
 
+//MARK: - Send the Updates to View after receiving the updates from presenter
 extension PhotosViewPresenter: PhotosInteractorToPresenterProtocol {
     func fetchedPhotosOnSuccess(photos: [PhotoObject]) {
         view?.addPicturesToView(photos: photos)
@@ -49,6 +54,9 @@ extension PhotosViewPresenter: PhotosInteractorToPresenterProtocol {
 
 //Remove Vowels Recursively
 extension PhotosViewPresenter {
+    /**
+     Remove the vowels recursively from the Author name
+     */
     @discardableResult func removeVowel(index: inout Int, name: String, updatedName: inout String) -> String {
         if index == name.count {
             return updatedName
