@@ -48,10 +48,7 @@ extension PhotosViewController: PhotosPresenterToViewProtocol {
   
     func addPicturesToView(photos: [PhotoObject]) {
         picsumPhotos.append(contentsOf: photos)
-        let indexPaths = Array((photos.count - Constants.picsumPhotosLimit - 1)...(photos.count - 1)).map {
-            IndexPath(item: $0, section: 0)
-        }
-        photosCollectionView.insertItems(at: indexPaths)
+        photosCollectionView.reloadData()
     }
     
     func updateAuthorNameWithOutVowels(photoObject: PhotoObject, indexPath: IndexPath) {

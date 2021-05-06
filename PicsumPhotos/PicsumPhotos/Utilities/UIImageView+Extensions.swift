@@ -33,9 +33,13 @@ extension UIImageView {
             case .success(let data):
                 guard let imageToCache = UIImage(data: data), let scaledImage = imageToCache.scaleUIImageTo(size: CGSize(width: 165, height: 110)) else { return }
                 imageCache.setObject(scaledImage, forKey: urlString as AnyObject)
-                self.image = scaledImage
+                DispatchQueue.main.async() { [weak self] in
+                    self?.image = scaledImage
+                }
             case .failure(_):
-                self.image = UIImage(named: "EmptyPlaceholder")
+                DispatchQueue.main.async { [weak self] in
+                    self?.image = UIImage(named: "EmptyPlaceholder")
+                }
             }
         }
     }

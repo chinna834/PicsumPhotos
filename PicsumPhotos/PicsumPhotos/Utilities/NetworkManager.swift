@@ -100,9 +100,7 @@ class NetworkManager: NSObject {
                 return
             }
             
-            DispatchQueue.main.async() {
-                completion(.success(data))
-            }
+            completion(.success(data))
         }
 
         session.resume()
