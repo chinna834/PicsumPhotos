@@ -23,7 +23,7 @@ extension UIImageView {
      */
     func loadImage(from urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        image = nil
+        image = UIImage(named: "EmptyPlaceholder")
         
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject), let picsumImage = imageFromCache as? UIImage {
             image = picsumImage

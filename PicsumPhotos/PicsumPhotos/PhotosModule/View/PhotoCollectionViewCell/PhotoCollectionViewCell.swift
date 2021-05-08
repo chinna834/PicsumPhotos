@@ -53,6 +53,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         if let imageDownloadURLString = photoObject.getDownloadImageURL() {
             imageView.loadImage(from: imageDownloadURLString)
         }
+        else {
+            imageView.image = UIImage(named: "EmptyPlaceholder")
+        }
         
         authorNameLabel.text = photoObject.author ?? ""
     }

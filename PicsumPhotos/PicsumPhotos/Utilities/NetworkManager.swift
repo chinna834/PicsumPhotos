@@ -69,22 +69,18 @@ class NetworkManager: NSObject {
         let config = URLSessionConfiguration.default
         let session = URLSession.init(configuration: config, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
-            
             guard let r = response as? HTTPURLResponse else{
                 completion(false, nil, MAError(description: Constants.commonError, responseCode: 0, error: error))
                 return
             }
-            
             guard r.statusCode == 200 else {
                 completion(false, nil, MAError(description: Constants.commonError, responseCode: r.statusCode, error: error))
                 return
             }
-            
             guard let responseData = data else {
                 completion(false, nil, MAError(description: Constants.commonError, responseCode: r.statusCode, error: error))
                 return
-            }
-            
+            }            
             let res = T.response.parse(data: responseData, success: true)
             completion(true, res, nil)
         }
@@ -94,16 +90,12 @@ class NetworkManager: NSObject {
     //MARK: Download Image    
     static func downloadImage(url: URL, completion: @escaping (Result<Data>) -> Void) {
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
             guard let data = data, error == nil else {
                 completion(.failure(MAError(description: Constants.commonError, responseCode: 0, error: error)))
                 return
             }
-            
-            print(url.absoluteString)
             completion(.success(data))
         }
-
         session.resume()
     }
 }
